@@ -1,3 +1,4 @@
+  var body = document.getElementsByClassName('body')[0];
   var input = document.getElementsByClassName('input-test')[0];
   var answer = document.getElementsByClassName('answer')[0];
   var question = document.getElementsByClassName('question')[0];
@@ -5,6 +6,8 @@
   var result = document.getElementsByClassName('result')[0];
   var score = document.getElementsByClassName('score')[0];
   var button = document.getElementsByClassName('boton')[0];
+  var pass = document.getElementsByClassName('pasa')[0];
+
   var jumsu = 0;
 
 
@@ -24,18 +27,21 @@ function getQuestion(){
   });
 }
 
-function pasaPalabra(){
-  setTimeout(function(){
-    result.innerText = "";
-  }, 200);
-  getQuestion();
-}
+
 
 function startAndHide(){
   getQuestion();
   setTimeout(function(){
     button.style.display = 'none'
   }, 300);
+
+}
+
+function pasaPalabra(){
+  setTimeout(function(){
+    result.innerText = "";
+  }, 200);
+  getQuestion();
 
 }
 
@@ -47,13 +53,29 @@ function handleSubmit(){
           jumsu += punto;
           score.innerText = jumsu;
         } else{
-          result.innerText = "Incorrect"
+          result.innerText = "Incorrect!" + "\n" + "Correct : " + currentQuestion
           jumsu -= 100;
           score.innerText = jumsu;
+          gameOver();
         }
         input.value = "";
       }
     });
   }
-
 handleSubmit();
+
+function gameOver(){
+  if(jumsu < 0){
+    result.innerText = "2";
+    score.innerText = "";
+    question.innerText = "3";
+    input.style.display = "none";
+    answer.innerText = "1";
+    pass.style.display = "none";
+    setTimeout(function(){
+      body.innerHTML = '<img src=\'haha/haha.jpg\'>'
+    }, 3000);
+
+
+}
+}

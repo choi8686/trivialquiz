@@ -11,34 +11,34 @@ text-align:  center;
 
 .container{
           margin: 30px;
-          border: 30px solid #dddddd;
+
           padding: 30px;
 }
 .quiz{
   margin: 30px;
-  border: 30px solid #dddddd;
+
   padding: 30px;
 }
 .question{
   margin: 30px;
-  border: 30px solid  #dddddd;
+
   padding: 30px;
 }
 
 .result{
   margin: 30px;
-  border: 30px solid  #dddddd;
+
   padding: 30px;
 }
 
 .answer{
   margin: 30px;
-  border: 30px solid  #dddddd;
+
   padding: 30px;
 }
 
 .score{
   margin: 30px;
-  border: 30px solid  #dddddd;
+
   padding: 30px;
 }
