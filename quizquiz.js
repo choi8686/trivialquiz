@@ -7,10 +7,9 @@
   var score = document.getElementsByClassName('score')[0];
   var button = document.getElementsByClassName('boton')[0];
   var pass = document.getElementsByClassName('pasa')[0];
-
   var jumsu = 0;
 
-
+pass.style.display = "none"
 var currentQuestion;
 var punto;
 
@@ -33,6 +32,7 @@ function startAndHide(){
   getQuestion();
   setTimeout(function(){
     button.style.display = 'none'
+    pass.style.display = 'block'
   }, 300);
 
 }
