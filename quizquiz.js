@@ -48,6 +48,9 @@ function pasaPalabra(){
 function handleSubmit(){
       input.addEventListener('keyup',function(e){
     	if (e.keyCode === 13) {
+        if(input.value === ""){
+          return false;
+        }
         if(input.value === currentQuestion){
           result.innerText = "Correct"
           jumsu += punto;
@@ -66,15 +69,15 @@ handleSubmit();
 
 function gameOver(){
   if(jumsu < 0){
-    result.innerText = "2";
+    result.innerText = "";
     score.innerText = "";
-    question.innerText = "3";
+    question.innerText = "";
     input.style.display = "none";
-    answer.innerText = "1";
+    answer.innerText = "";
     pass.style.display = "none";
     setTimeout(function(){
       body.innerHTML = '<img src=\'haha/haha.jpg\'>'
-    }, 3000);
+    }, 2000);
 
 
 }
