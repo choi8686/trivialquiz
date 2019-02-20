@@ -3,8 +3,9 @@
   var question = document.getElementsByClassName('question')[0];
   var span = document.getElementsByClassName('spanking')[0];
   //question : recieve API
-var newArr = [];
-var galbi;
+
+var currentQuestion;
+
 function getQuestion(){
   fetch(`http://jservice.io/api/random`)
   .then(function(response){
@@ -14,7 +15,7 @@ function getQuestion(){
     var ask = json[0].question;
     var ans = json[0].answer;
     span.innerText = ask;
-    newArr.push(ans);
+    currentQuestion = ans;
   });
 }
 
@@ -31,20 +32,17 @@ function getQuestion(){
     function handleSubmit(){
       input.addEventListener('keyup',function(e){
     	if (e.keyCode === 13) {
-      	newArr.push(input.value);
-          input.value = "";
+        if(input.value === currentQuestion){
+          console.log("correct");
+        } else{
+          console.log("incorrect");
+        }
+        input.value = "";
       }
 
     });
   }
 
-  function divideResult(){
-    if(newArr[0] === newArr[1]){
-      console.log("correct");
-    } else {
-      console.log("incorrect");
-    }
-  }
 
   function countScore(){
 
@@ -55,7 +53,7 @@ function getQuestion(){
   function init(){
     getQuestion();
     handleSubmit();
-    divideResult();
+
   }
 
   init();
