@@ -5,10 +5,11 @@
   var result = document.getElementsByClassName('result')[0];
   var score = document.getElementsByClassName('score')[0];
   var button = document.getElementsByClassName('boton')[0];
-  var count = 0;
-  //question : recieve API
+  var jumsu = 0;
+
 
 var currentQuestion;
+var punto;
 
 function getQuestion(){
   fetch(`http://jservice.io/api/random`)
@@ -17,48 +18,42 @@ function getQuestion(){
   })
   .then(function(json){
     var ask = json[0].question;
-    currentQuestion = json[0].answer;
     span.innerText = ask;
+    currentQuestion = json[0].answer;
+    punto = json[0].value;
   });
 }
 
+function pasaPalabra(){
+  setTimeout(function(){
+    result.innerText = "";
+  }, 200);
+  getQuestion();
+}
 
-    /*result : division correct or not.
-    if correct -> correct!
-    if incrrect -> incorrect! and correct-answer
-    */
+function startAndHide(){
+  getQuestion();
+  setTimeout(function(){
+    button.style.display = 'none'
+  }, 300);
 
+}
 
-    //answer : input text and enter.
-
-    function handleSubmit(){
+function handleSubmit(){
       input.addEventListener('keyup',function(e){
     	if (e.keyCode === 13) {
         if(input.value === currentQuestion){
           result.innerText = "Correct"
-          count++;
-          score.innerText = count;
-          getQuestion()
+          jumsu += punto;
+          score.innerText = jumsu;
         } else{
           result.innerText = "Incorrect"
-          count--;
-          score.innerText = count;
+          jumsu -= 100;
+          score.innerText = jumsu;
         }
         input.value = "";
       }
     });
-
   }
 
-
-
-    //score : if correct -> 10 point ++, if incorrect -> 5 point --
-
-
-  function init(){
-
-    handleSubmit();
-
-  }
-
-  init();
+handleSubmit();
