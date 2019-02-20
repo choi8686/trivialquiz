@@ -69,16 +69,9 @@ handleSubmit();
 
 function gameOver(){
   if(jumsu < 0){
-    result.innerText = "";
-    score.innerText = "";
-    question.innerText = "";
-    input.style.display = "none";
-    answer.innerText = "";
-    pass.style.display = "none";
-    setTimeout(function(){
-      body.innerHTML = '<img src=\'haha/haha.jpg\'>'
-    }, 2000);
-
-
+    body.innerText = "";
+  setTimeout(function(){
+  location.href = "gameOver.html"
+}, 3000);
 }
 }
