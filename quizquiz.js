@@ -2,6 +2,10 @@
   var answer = document.getElementsByClassName('answer')[0];
   var question = document.getElementsByClassName('question')[0];
   var span = document.getElementsByClassName('spanking')[0];
+  var result = document.getElementsByClassName('result')[0];
+  var score = document.getElementsByClassName('score')[0];
+  var button = document.getElementsByClassName('boton')[0];
+  var count = 0;
   //question : recieve API
 
 var currentQuestion;
@@ -13,12 +17,10 @@ function getQuestion(){
   })
   .then(function(json){
     var ask = json[0].question;
-    var ans = json[0].answer;
+    currentQuestion = json[0].answer;
     span.innerText = ask;
-    currentQuestion = ans;
   });
 }
-
 
 
     /*result : division correct or not.
@@ -33,25 +35,28 @@ function getQuestion(){
       input.addEventListener('keyup',function(e){
     	if (e.keyCode === 13) {
         if(input.value === currentQuestion){
-          console.log("correct");
+          result.innerText = "Correct"
+          count++;
+          score.innerText = count;
+          getQuestion()
         } else{
-          console.log("incorrect");
+          result.innerText = "Incorrect"
+          count--;
+          score.innerText = count;
         }
         input.value = "";
       }
-
     });
-  }
-
-
-  function countScore(){
 
   }
+
+
+
     //score : if correct -> 10 point ++, if incorrect -> 5 point --
 
 
   function init(){
-    getQuestion();
+
     handleSubmit();
 
   }
